@@ -1,16 +1,20 @@
-const exprsse=require("express");
-const server=exprsse();
-server.use(exprsse.json());
-server.use(exprsse.urlencoded({extended:true}));
-server.get("/",(req,res)=>{
-    res.send("你好 expres框架")
-});
-server.get("/hello",(req,res)=>{
-    console.log(req.query);
-    res.send("你好 二狗")
-});
-server.post("/handle",(req,res)=>{
-    console.log(req.body);
-    res.send("中国")
-})
+const express=require("express");
+//导入注册模块路由
+const regrouter=require("./routes/register");
+const server=express();
+const cookieParser=require("cookie-parser");
+
+
+//中间件引入req.body属性
+server.use(express.json());
+server.use(express.urlencoded({extended:true}));
+
+//设置静态托管文件夹
+server.use(express.static("www"));
+
+//引入模板引擎ejs
+server.set("views","views");
+server.set("views egine","ejs");
+
+server.use("/regsiter",regrouter);
 server.listen(3000);
