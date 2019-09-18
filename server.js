@@ -15,7 +15,6 @@ server.use(express.urlencoded({extended:true}));
 //设置静态托管文件夹
 server.use(express.static("www"));
 
-
-
+//注册路由
 server.use("/register",regrouter);
 server.listen(3000);
